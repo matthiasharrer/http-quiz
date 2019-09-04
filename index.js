@@ -5,22 +5,18 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.get("/", (req, res) => {
-    res.end(`<html><head><title>Next steps</title></head><body>
-                Welcome to this short little quiz. To start just post your name.
-                <form action="/wrong-post" method="get">
-                    <input type="text" placeholder="Username" name="username">
-                    <input type="submit" value="Submit">
-                </form>
-            </body></html>`)
-});
-
-app.get("/wrong-post", (req, res) => {
-    if(!req.query.username) {
-        return res.status(400).end();
+    if(req.query.username) {
+        res.end(`Nice to meet you ${req.query.username}, but this was not the correct way to do it (and actually a GET and not a POST). Please use an HTTP Client, for example the 'REST Client' Extension for VS Code or Postman and try again.`)
+    } else {
+        res.end(`<html><head><title>Next steps</title></head><body>
+                    Welcome to this short little quiz. To start just post your name.
+                    <form action="/wrong-post" method="get">
+                        <input type="text" placeholder="Username" name="username">
+                        <input type="submit" value="Submit">
+                    </form>
+                </body></html>`);
     }
-
-    res.end(`Nice to meet you ${req.query.username}, but this was not the correct way to do it (and actually a GET and not a POST). Please use an HTTP Client, for example the 'REST Client' Extension for VS Code or Postman and try again.`)
-})
+});
 
 app.post("/", bodyParser.text(), (req, res) => {
     var nextStepsUrl = 'https://' + req.get('host') + path.join(req.originalUrl, "next-steps");
