@@ -1,0 +1,53 @@
+@host = localhost:3000
+
+GET / HTTP/1.1
+Host: {{host}}
+
+###
+
+GET /?username=Harald HTTP/1.1
+Host: {{host}}
+
+###
+
+POST  / HTTP/1.1
+Host: {{host}}
+
+Harald
+
+###
+
+POST  / HTTP/1.1
+Host: {{host}}
+Content-Type: text/plain
+
+Harald
+
+###
+
+GET /next-steps HTTP/1.1
+Host: {{host}}
+
+###
+
+OPTIONS /next-steps HTTP/1.1
+Host: {{host}}
+
+###
+
+DELETE /next-steps HTTP/1.1
+Host: {{host}}
+
+###
+
+DELETE /next-steps HTTP/1.1
+Host: {{host}}
+Authorization: Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d
+
+###
+
+PUT /your-steps HTTP/1.1
+Host: {{host}}
+Authorization: Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d
+
+SOMETHING

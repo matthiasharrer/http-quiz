@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", bodyParser.text(), (req, res) => {
+    if(typeof req.body !== "string") {
+        return res.end('Try sending your name in the body. You might need to include this request header "Content-Type: text/plain". This tells me to interpret the name you are sending as plain text.')
+    }
+
     var nextStepsUrl = 'https://' + req.get('host') + path.join(req.originalUrl, "next-steps");
     res.location(nextStepsUrl)
        .end(`Hi ${req.body}!\nWhen creating new resources using POST the server usually returns the location of the created resource in the 'Location' Header`);
@@ -30,15 +34,22 @@ app.get("/next-steps", (req, res) => {
 
 app.options("/next-steps", (req, res) => {
     res.header('Allow', 'GET,DELETE');
-    res.send("Look at the allow response header.");
+    res.send("Look at the 'Allow' response header.");
 });
 
 app.delete("/next-steps", (req, res) => {
     if(req.headers.authorization === "Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d") {
-        res.send("Oh no .. all the steps are gone now.")
+        res.send("Oh no .. you've deleted all the steps ... please put your own steps at '/your-steps'");
     } else {
         res.send(`You need to authenticate in order to call this method. This can be done by sending "Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d" in the "Authorization" Header`);
     }
+});
+
+app.put("/your-steps", bodyParser.text({type: () => true}), (req, res) => {
+    if(req.body === "") {
+        res.end("Come on .. you should put SOMETHING")
+    }
+    res.end("Well, that's a nice way to put it: \n\n" + req.body + "\n\nYou made it!");
 });
 
 app.get("*", (req, res) => {
