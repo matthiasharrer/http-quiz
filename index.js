@@ -41,7 +41,8 @@ async function main() {
             return res.end('Try sending your name in the body. You might need to include this request header "Content-Type: text/plain". This tells me to interpret the name you are sending as plain text.')
         }
         req.session.user = req.body;
-        res.location("/next-steps")
+        const nextStepsUrl = 'https://' + req.get('host') + path.join(req.originalUrl, "next-steps");
+        res.location(nextStepsUrl)
             .end(`Hi ${req.body}!\nWhen creating new resources using POST the server usually returns the location of the created resource in the 'Location' Header`);
     });
 
@@ -56,7 +57,8 @@ async function main() {
 
     app.delete("/next-steps", (req, res) => {
         if(req.headers.authorization === "Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d") {
-            res.send("Oh no .. you've deleted all the steps ... please put your own steps at '/your-steps'");
+            const yourStepsUrl = 'https://' + req.get('host') + path.join(req.originalUrl, "../your-steps");
+            res.send("Oh no .. you've deleted all the steps ... please put your own steps at " + yourStepsUrl);
         } else {
             res.send(`You need to authenticate in order to call this method. This can be done by sending "Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d" in the "Authorization" Header`);
         }

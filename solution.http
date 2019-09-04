@@ -1,80 +1,66 @@
-@host = localhost:3000
+@host = https://http-quiz.maharrer.now.sh
 
-GET / HTTP/1.1
-Host: {{host}}
-
-###
-
-GET /?username=Harald HTTP/1.1
-Host: {{host}}
+GET {{host}}/ HTTP/1.1
 
 ###
 
-POST / HTTP/1.1
-Host: {{host}}
+GET {{host}}/?username=Harald HTTP/1.1
+
+###
+
+POST {{host}}/ HTTP/1.1
 
 Harald
 
 ###
 
-POST / HTTP/1.1
-Host: {{host}}
+POST https://http-quiz.maharrer.now.sh/ HTTP/1.1
 Content-Type: text/plain
 
 Harald
 
 ###
 
-GET /next-steps HTTP/1.1
-Host: {{host}}
+GET {{host}}/next-steps HTTP/1.1
 
 ###
 
-OPTIONS /next-steps HTTP/1.1
-Host: {{host}}
+OPTIONS {{host}}/next-steps HTTP/1.1
 
 ###
 
-DELETE /next-steps HTTP/1.1
-Host: {{host}}
+DELETE {{host}}/next-steps HTTP/1.1
 
 ###
 
-DELETE /next-steps HTTP/1.1
-Host: {{host}}
+DELETE {{host}}/next-steps HTTP/1.1
 Authorization: Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d
 
 ###
 
-PUT /your-steps HTTP/1.1
-Host: {{host}}
+PUT {{host}}/your-steps HTTP/1.1
 
 ###
 
-PUT /your-steps HTTP/1.1
-Host: {{host}}
+PUT {{host}}/your-steps HTTP/1.1
 
 SOMETHING
 
 ###
 
-POST /rating/stars/5 HTTP/1.1
-Host: {{host}}
+POST {{host}}/rating/stars/5 HTTP/1.1
 
 ###
 # ADDITIONAL
 ###
 
 
-GET /all-ratings HTTP/1.1
-Host: {{host}}
+GET {{host}}/all-ratings HTTP/1.1
 
 ###
 
-DELETE /all-ratings HTTP/1.1
-Host: {{host}}
+DELETE {{host}}/all-ratings HTTP/1.1
 
 ###
 
-DELETE /all-sessions HTTP/1.1
-Host: {{host}}
+DELETE {{host}}/all-sessions HTTP/1.1
