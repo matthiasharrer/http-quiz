@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
     } else {
         res.end(`<html><head><title>Next steps</title></head><body>
                     Welcome to this short little quiz. To start just post your name.
-                    <form action="/wrong-post" method="get">
+                    <form action="/" method="get">
                         <input type="text" placeholder="Username" name="username">
                         <input type="submit" value="Submit">
                     </form>
