@@ -10,14 +10,14 @@ Host: {{host}}
 
 ###
 
-POST  / HTTP/1.1
+POST / HTTP/1.1
 Host: {{host}}
 
 Harald
 
 ###
 
-POST  / HTTP/1.1
+POST / HTTP/1.1
 Host: {{host}}
 Content-Type: text/plain
 
@@ -48,6 +48,33 @@ Authorization: Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d
 
 PUT /your-steps HTTP/1.1
 Host: {{host}}
-Authorization: Bearer 8a5ed8b0b3ed4d698e52ee7d14ed405d
+
+###
+
+PUT /your-steps HTTP/1.1
+Host: {{host}}
 
 SOMETHING
+
+###
+
+POST /rating/stars/5 HTTP/1.1
+Host: {{host}}
+
+###
+# ADDITIONAL
+###
+
+
+GET /all-ratings HTTP/1.1
+Host: {{host}}
+
+###
+
+DELETE /all-ratings HTTP/1.1
+Host: {{host}}
+
+###
+
+DELETE /all-sessions HTTP/1.1
+Host: {{host}}
